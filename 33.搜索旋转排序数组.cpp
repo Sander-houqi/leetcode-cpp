@@ -27,6 +27,7 @@ public:
                 {
                     l = mid + 1;
                 }
+            // 右区间有序
             }else
             {
                 if(nums[mid]<= target && target <= nums[r]){
