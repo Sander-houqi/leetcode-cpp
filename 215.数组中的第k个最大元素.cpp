@@ -9,6 +9,7 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
+    //时间复杂度为O(n)
     int findKthLargest(vector<int>& nums, int k) {
 
         int l = 0 , r = nums.size()-1, target = nums.size() -k ;
@@ -26,28 +27,46 @@ public:
         return -1;
 
     }
-
-    int quickSelection(vector<int>& nums, int l ,int r){
-        int i = l+1, j = r;
-        int pivot = nums[l];
-        //这里边界条件很容易出错
-        while(true){
-            while(i <= j && nums[i]<=pivot){
-                ++i;
+    
+    //单指针的快速选择,相比于下面的双指针更好理解，边界条件少
+    int quickSelection(vector<int>& nums, int l, int r){
+        int i = l -1;
+        //数组的最后一个值作为基准值
+        int privot = nums[r];
+        for(int j = l ; j < r; ++j){
+            // 如果小于基准值，交换到左边
+            if(nums[j]<=privot){
+                swap(nums[++i],nums[j]);
             }
-            while(i <= j && nums[j]>=pivot){
-                --j;
-            }
-            if (i>j) break;
-
-            swap(nums[i],nums[j]);
         }
-
-        swap(nums[l],nums[j]);
-
-        return j;
+        //把基准值移动到中间
+        swap(nums[i+1],nums[r]);
+        return i+1;
 
     }
+
+
+    // int quickSelection(vector<int>& nums, int l ,int r){
+    //     int i = l+1, j = r;
+    //     int pivot = nums[l];
+    //     //这里边界条件很容易出错
+    //     while(true){
+    //         while(i <= j && nums[i]<=pivot){
+    //             ++i;
+    //         }
+    //         while(i <= j && nums[j]>=pivot){
+    //             --j;
+    //         }
+    //         if (i>j) break;
+
+    //         swap(nums[i],nums[j]);
+    //     }
+
+    //     swap(nums[l],nums[j]);
+
+    //     return j;
+
+    // }
 
     //  int quickSelection(vector<int>& nums, int l ,int r){
     //     int i = l+1, j = r;
