@@ -13,15 +13,17 @@ public:
     vector<int> findDisappearedNumbers(vector<int>& nums) {
         vector<int> ans;
 
+        // 数组中的元素作为索引，负数标记是否访问
         for(const int & num :nums){
             int pos = abs(num)-1;
             if(nums[pos]>0){
                 nums[pos] = -nums[pos];
             }
         }
-
+        // 没有被标记的，其元素值就大于0
         for(int i =0; i<nums.size();++i){
             if(nums[i]>0){
+                // 索引值要+1
                 ans.push_back(i+1);
             }
         }
