@@ -12,7 +12,7 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    // 深度优先搜索+栈
+    // 广度优先搜索+栈
     int maxAreaOfIsland(vector<vector<int>>& grid) {
         vector<int> direction = {-1,0,1,0,-1};
         int m = grid.size(), n = m ? grid[0].size(): 0, local_area , area = 0 , x , y;
