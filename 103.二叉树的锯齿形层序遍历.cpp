@@ -28,6 +28,7 @@ public:
 
         queue<TreeNode*> q;
         q.push(root);
+        // flag 表示是否逆向遍历
         bool flag = true;
 
         while (!q.empty()){   
@@ -41,12 +42,13 @@ public:
                 q.pop();
 
                 if(flag){
+                    //添加到对列尾部
                     tmp.push_back(node->val);
                 }else
-                {
+                {   //添加到队列头部
                     tmp.push_front(node->val);
                 }
-                
+                // 左右节点添加到队列中
                 if(node->left){
                     q.push(node->left);
                 }
@@ -57,6 +59,7 @@ public:
                 }
             }
             
+            // 队列转vector
             res.push_back(vector<int>{tmp.begin(),tmp.end()});
             flag = !flag;
         }
