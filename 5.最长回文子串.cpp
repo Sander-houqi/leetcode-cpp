@@ -15,6 +15,7 @@ public:
     //参考leetcode官方题解
     string longestPalindrome(string s) {
         int n = s.size();
+        //dp[i][j]表示s字符串从i到j是不是回文串
         vector<vector<int>> dp(n, vector<int>(n));
         string ans;
         //字串长度为l+1
