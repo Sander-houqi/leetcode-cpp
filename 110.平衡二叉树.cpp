@@ -32,10 +32,12 @@ public:
         }
 
         int left = helper(root->left) , right = helper(root->right);
+        // 只要子树不平衡，二叉树就不平衡
         if(left ==-1 || right == -1 || abs(left-right)>1 ){
             return -1;
         }else
-        {
+        {   
+            //计算二叉树的最大深度
             return max(left,right) +1;
         }
 

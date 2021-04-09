@@ -24,6 +24,7 @@ public:
                 l = mid + 1 ;
             }
         }
+        //平方根一定是r，l这个时候必定大于r
         return r;
     }
 };
