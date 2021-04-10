@@ -18,11 +18,12 @@ public:
         vector<int> dp(n,0);
         // result 如果要获得最长递增序列，而不是只求长度
         // vector<vector<int>> result;
+        //dp[i]表示前i个元素，以第i个数字结尾的最长上升序列的长度
         for(int i =0; i < n; i++){
             //初始值是1;
             dp[i]=1;
-            vector<int> tmp;
-            //dp[j] 就代表nums[0...j]中以nums[j]结尾的最长递增子序列
+            // vector<int> tmp;
+            //dp[j] 就代表nums[0...j]中以nums[j]结尾的最长递增子序列的长度
             for(int j = 0; j < i; j++){
                 //当前值和之前所有的元素进行比较，只有小于当前值，才填表
                 if (nums[j]<nums[i]){
@@ -63,11 +64,11 @@ public:
             return 0;
         }
 
-        //dp[i] 表示长度为i的最长上升子序列的末尾元素的最小值
+        //dp[i] 表示长度为i的最长上升子序列的末尾元素的最小值，注意dp不是我们要的最长上升子序列，只是存储最小末尾元素，且可证单调
         //且通过反证法可证dp是一个单调递增的序列，就可以用二分查找
-        //长度为i的末尾元素一定小于长度为i+1的末尾元素，这是由dp的定义决定的
+        //长度为i的末尾元素一定小于长度为i+1的末尾元素，这是由dp单调性可得
         //证明参考https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/dong-tai-gui-hua-er-fen-cha-zhao-tan-xin-suan-fa-p/
-        //dp单调性证明，反证法证明：如果dp[j]>=dp[i],且j<i，从长度为i的子序列删除i-j个元素，序列长度变为j，且其末尾元素x必然小于d[i](因为是递增序列)，所以推出x<dp[i]<=dp[j],存在另外一个序列的末尾元素小于dp[j],矛盾。
+        //dp单调性证明，反证法证明：如果dp[j]>=dp[i],且j<i，从长度为i的子序列删除i-j个元素，序列长度变为j，且其末尾元素x必然小于dp[i](因为是本身是一个递增序列)，所以推出x<dp[i]<=dp[j],存在另外一个序列的末尾元素小于dp[j],矛盾。
         vector<int> dp(n+1,0);
         dp[len] = nums[0];
 

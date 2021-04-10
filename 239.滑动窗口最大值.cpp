@@ -18,23 +18,22 @@ public:
         vector<int> ans;
 
         for(int i =0; i<nums.size();++i){
-            //队首的索引如果不在当前窗口弹出
+            //队首的索引如果不在当前窗口弹出，保持滑动窗口的大小为k
             if(!dq.empty() && dq.front()<=i-k){
                 dq.pop_front();
             }
 
-             // 保证从大到小 如果前面数小则需要依次弹出，直至满足要求
+             // 保证从大到小 如果dp后面数小则需要依次弹出，直至满足要求
             while (!dq.empty() && nums[dq.back()]<=nums[i])
             {
                 dq.pop_back();
             }
             // 添加当前值对应的数组下标
             dq.push_back(i);
-            // 当窗口长度为k时 保存当前窗口中最大值
+            // 当窗口长度为k时 保存当前窗口中最大值，从第一个滑动窗口开始保存
             if(i>=k-1){
                 ans.push_back(nums[dq.front()]);
             }
-            
 
         }
 
