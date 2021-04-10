@@ -70,13 +70,14 @@ public:
         //证明参考https://leetcode-cn.com/problems/longest-increasing-subsequence/solution/dong-tai-gui-hua-er-fen-cha-zhao-tan-xin-suan-fa-p/
         //dp单调性证明，反证法证明：如果dp[j]>=dp[i],且j<i，从长度为i的子序列删除i-j个元素，序列长度变为j，且其末尾元素x必然小于dp[i](因为是本身是一个递增序列)，所以推出x<dp[i]<=dp[j],存在另外一个序列的末尾元素小于dp[j],矛盾。
         vector<int> dp(n+1,0);
+        //直接忽略d[0]
         dp[len] = nums[0];
 
         for(int i = 1; i < n; ++i){
             // nums[i]如果大于末尾元素，直接追加
             if(nums[i] > dp[len]){
                 dp[++len] = nums[i];
-            }else{ // 否则在dp数组中找到一个比nums[i]小的，并更新dp的下一个位置
+            }else{ // 否则在dp数组中找到一第一个比nums[i]小的d[k]，并更新dp的下一个位置
                 int l = 1 , r = len, pos = 0; // 如果找不到说明所有的数都比 nums[i] 大，此时要更新 d[1]，所以这里将 pos 设为 0
                 while(l<=r){
                     int mid = (l + r) >> 1;
